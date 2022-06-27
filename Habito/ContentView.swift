@@ -8,9 +8,23 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var data = Activities()
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            List(data.activities) { activity in
+                NavigationLink {
+                    Text("Detail view")
+                } label: {
+                    HStack{
+                        Text(activity.title)
+                        Spacer()
+                        Text(String(activity.completionCount))
+                    }
+                }
+            }
+        }
     }
 }
 
